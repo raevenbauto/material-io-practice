@@ -44,7 +44,7 @@ export default ({exercises}) =>
         </Grid>
         <Grid item sm>
             <Paper style={style.Paper} >
-                This will be the description of the workout test.
+                This will be the description of the workout test.a
             </Paper>
         </Grid>
     </Grid>
