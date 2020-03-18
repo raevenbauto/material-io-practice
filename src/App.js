@@ -7,7 +7,8 @@ import Header from "./Components/Layout/Header";
 class App extends Component {
     state = {
         exercises,
-        category: ""
+        category: "",
+        currExercise: {}
     };
 
     getExerciseByMuscle  = () => {
@@ -28,13 +29,24 @@ class App extends Component {
         })
     };
 
+    handleExerciseSelect = id => {
+        this.setState((prevState) => ({
+            currExercise: prevState.exercises.find(exercise => exercise.id === id)
+        }))
+    };
+
     render(){
+        const {category, currExercise} = this.state;
         return(
             <Fragment>
                 <Header/>
-                <Exercise exercises={this.getExerciseByMuscle()}/>
+                <Exercise
+                    currExercise={currExercise}
+                    exercises={this.getExerciseByMuscle()}
+                    category={category}
+                    onSelect={this.handleExerciseSelect}/>
                 <Footer
-                    category={this.state.category}
+                    category={category}
                     muscles={muscles}
                     onSelect={this.handleCategorySelect}/>
             </Fragment>

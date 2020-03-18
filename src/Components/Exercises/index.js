@@ -9,35 +9,46 @@ import ListItemText from "@material-ui/core/ListItemText";
 const style ={
     Paper:{
         padding: 30,
-        marginTop: 10,
-        marginBottom: 10
+        margin: 10,
+        height: 500,
+        overflow: "auto"
     }
 };
 
-
-export default ({exercises}) =>
+export default ({
+    exercises,
+    category,
+    onSelect,
+    currExercise: {
+        title = "Welcome!",
+        description = "This is the description of the exercise"}}) =>
     <Grid container>
         <Grid item sm>
-            <Paper style={style.Paper} >
+            <Paper style={style.Paper}>
                 {
                     exercises.map(([group, exercises]) =>
-                        <Fragment>
-                            <Typography
-                                variant="h5"
-                                style={{textTransform: 'uppercase'}}>
-                                {group}
-                            </Typography>
+                        !category || group === category
+                            ? <Fragment key={group}>
+                                <Typography
+                                    variant="h5"
+                                    style={{textTransform: 'uppercase'}}>
+                                    {group}
+                                </Typography>
                                 <List>
                                     {
-                                        exercises.map(({title}) =>
-                                            <ListItem button>
+                                        exercises.map(({title, id}) =>
+                                            <ListItem
+                                                key={id}
+                                                onClick={() => onSelect(id)}
+                                                button>
                                                 <ListItemText primary={title}/>
                                             </ListItem>
                                         )
                                     }
                                 </List>
 
-                        </Fragment>
+                            </Fragment>
+                            : null
                     )
                 }
             </Paper>
