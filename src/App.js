@@ -6,7 +6,8 @@ import Header from "./Components/Layout/Header";
 
 class App extends Component {
     state = {
-        exercises
+        exercises,
+        category: ""
     };
 
     getExerciseByMuscle  = () => {
@@ -21,12 +22,21 @@ class App extends Component {
         }, {}));
     };
 
+    handleCategorySelect = category => {
+        this.setState({
+            category
+        })
+    };
+
     render(){
         return(
             <Fragment>
                 <Header/>
                 <Exercise exercises={this.getExerciseByMuscle()}/>
-                <Footer muscles={muscles}/>
+                <Footer
+                    category={this.state.category}
+                    muscles={muscles}
+                    onSelect={this.handleCategorySelect}/>
             </Fragment>
         )
     }
