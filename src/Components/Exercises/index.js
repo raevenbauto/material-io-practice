@@ -55,7 +55,6 @@ export default ({
         </Grid>
         <Grid item sm>
             <Paper style={style.Paper} >
-                This is my test.
                 <Typography
                     variant="h3">
                     {title}
