@@ -55,7 +55,16 @@ export default ({
         </Grid>
         <Grid item sm>
             <Paper style={style.Paper} >
-                This will be the description of the workout test.a
+                This is my test.
+                <Typography
+                    variant="h3">
+                    {title}
+                </Typography>
+
+                <Typography
+                    variant="display1">
+                    {description}
+                </Typography>
             </Paper>
         </Grid>
     </Grid>
